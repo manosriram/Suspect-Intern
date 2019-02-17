@@ -1,0 +1,19 @@
+/* #wrapper {
+  margin: auto;
+  width: 500px;
+  overflow: auto;
+  position: relative;
+} */
+
+.create-resize {
+  width: 300px;
+}
+
+/* .create {
+  float: left;
+  margin-right: 40px;
+} */
+
+.removeCom {
+  float: right;
+}
