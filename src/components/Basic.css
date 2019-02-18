@@ -1,19 +1,28 @@
-/* #wrapper {
-  margin: auto;
-  width: 500px;
-  overflow: auto;
-  position: relative;
-} */
-
 .create-resize {
   width: 300px;
 }
 
-/* .create {
-  float: left;
-  margin-right: 40px;
-} */
-
 .removeCom {
   float: right;
+}
+
+#task2 {
+  text-align: right;
+}
+
+img {
+  width: 40%;
+  height: 40%;
+}
+
+#im {
+  display: inline-block;
+}
+
+input {
+  border-radius: 8px;
+}
+
+input::placeholder {
+  text-align: center;
 }

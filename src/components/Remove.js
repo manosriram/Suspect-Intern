@@ -22,6 +22,7 @@ class Remove extends Component {
       if (this.state.name === this.props.data.rectData[t].name) {
         el = this.props.data.rectData[t];
         ctx.clearRect(el.xCo, el.yCo, el.width, el.height);
+
         return;
       }
     }
@@ -30,7 +31,7 @@ class Remove extends Component {
   render() {
     return (
       <div>
-        <h1>Remove.JS</h1>
+        <h3>Remove Rectangle</h3>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"

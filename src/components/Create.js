@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import Remove from "./Remove";
+import NavBar from "./NavBar";
 
 class Create extends Component {
   state = {
+    page: 0,
     xCo: "",
     yCo: "",
     width: "",
@@ -97,14 +99,13 @@ class Create extends Component {
   render() {
     return (
       <div>
+        <NavBar />
+
         <div className="removeCom">
           <Remove data={this.state} />
         </div>
         <div className="create-resize">
-          <h1>Create.JS</h1>
-          <br />
-          <br />
-          <br />
+          <h3>Create Rectangle</h3>
           <form onSubmit={this.handleCreateSubmit}>
             <input
               type="text"
@@ -164,11 +165,13 @@ class Create extends Component {
             <input type="submit" value="Create" className="btn btn-primary" />
           </form>
           <br />
-
+          <br />
+          <br />
+          <h3>Resize Rectangle</h3>
           <form onSubmit={this.handleResizeSubmit}>
             <input
               type="text"
-              placeholder="Name"
+              placeholder="Name of Rectangle"
               value={this.state.newName}
               name="newName"
               onChange={this.handleChange}
