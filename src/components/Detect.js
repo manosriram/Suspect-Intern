@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 
 class Detect extends React.Component {
   state = {
+    status: 0,
     name: "",
     data: [],
     faces: [
@@ -40,6 +41,7 @@ class Detect extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
     const name = this.state.name;
     var index;
     for (let t = 0; t < this.state.faces.length; t++) {
@@ -48,25 +50,29 @@ class Detect extends React.Component {
         break;
       }
     }
-
     var can = document.getElementById("can");
     var ctx = can.getContext("2d");
+    var inp = document.createElement("input");
+    inp.id = "inp";
     ctx.rect(
       this.state.coOrds[index].x,
       this.state.coOrds[index].y,
       this.state.coOrds[index].w,
       this.state.coOrds[index].h
     );
+    can += inp;
     window.scrollBy(0, this.state.coOrds[index].y + 450);
     ctx.strokeStyle = "white";
     ctx.stroke();
-    this.setState({ name: "" });
+
+    this.setState({ name: "", status: 1 });
     console.log(this.state.imgs[index]);
   };
 
   componentDidMount() {
     var im = document.getElementById("im");
     var can = document.getElementById("can");
+
     var ctx = can.getContext("2d");
 
     can.width = 1000;
@@ -87,6 +93,7 @@ class Detect extends React.Component {
           imgs[imgIndex].onload = (function() {
             var thisX = x * 800;
             var thisY = y * 800;
+            const inp = document.createElement("input");
 
             return function() {
               ctx.drawImage(this, thisX, thisY, 500, 500);
@@ -127,9 +134,11 @@ class Detect extends React.Component {
         <hr />
         <br />
         <h2>Canvas Area</h2>
-        <canvas id="can">
-          <div id="divC" />
-        </canvas>
+        <div>
+          <canvas id="can" />
+          <input type="text" />
+        </div>
+        {/* <canvas id="can" /> */}
       </div>
     );
   }
