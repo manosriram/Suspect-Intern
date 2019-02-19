@@ -206,6 +206,8 @@ class Create extends Component {
         <br />
         <br />
         <br />
+        <h2>Canvas Area</h2>
+        <canvas id="can" />
       </div>
     );
   }

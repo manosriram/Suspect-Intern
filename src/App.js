@@ -15,9 +15,6 @@ class App extends Component {
             <Route exact path="/detect" component={Detect} />
           </div>
         </BrowserRouter>
-        <hr />
-        <h3>Canvas Area</h3>
-        <canvas id="can" />
       </div>
     );
   }
