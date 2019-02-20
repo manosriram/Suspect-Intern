@@ -32,9 +32,6 @@ input::placeholder {
   color: white;
 }
 
-#inp {
-  position: relative;
-
-  /* width: 400px; */
-  /* height: 200px; */
+#label {
+  z-index: 1;
 }

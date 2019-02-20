@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 
 class Detect extends React.Component {
   state = {
+    label: "",
     status: 0,
     name: "",
     data: [],
@@ -33,6 +34,12 @@ class Detect extends React.Component {
     imgs: []
   };
 
+  handleLabelSubmit = () => {
+    this.setState({ label: this.refs.label.value }, () =>
+      console.log(this.state)
+    );
+  };
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -50,26 +57,36 @@ class Detect extends React.Component {
         break;
       }
     }
+
     var can = document.getElementById("can");
     var ctx = can.getContext("2d");
-    var inp = document.createElement("input");
-    inp.id = "inp";
+    var inp = document.getElementById("canText");
+    inp.style.display = "block";
+    inp.style.position = "absolute";
+
+    inp.style.right = this.state.coOrds[index].x + 100 + "px";
+    inp.style.top = this.state.coOrds[index].y + 800 + "px";
+    inp.id = "label";
+
     ctx.rect(
       this.state.coOrds[index].x,
       this.state.coOrds[index].y,
       this.state.coOrds[index].w,
       this.state.coOrds[index].h
     );
-    can += inp;
     window.scrollBy(0, this.state.coOrds[index].y + 450);
+
     ctx.strokeStyle = "white";
     ctx.stroke();
 
     this.setState({ name: "", status: 1 });
-    console.log(this.state.imgs[index]);
   };
 
   componentDidMount() {
+    var inp = document.getElementById("canText");
+
+    inp.style.display = "none";
+
     var im = document.getElementById("im");
     var can = document.getElementById("can");
 
@@ -93,7 +110,6 @@ class Detect extends React.Component {
           imgs[imgIndex].onload = (function() {
             var thisX = x * 800;
             var thisY = y * 800;
-            const inp = document.createElement("input");
 
             return function() {
               ctx.drawImage(this, thisX, thisY, 500, 500);
@@ -135,10 +151,25 @@ class Detect extends React.Component {
         <br />
         <h2>Canvas Area</h2>
         <div>
+          <form id="canText">
+            <input
+              id="label"
+              type="text"
+              name="label"
+              value={this.state.label}
+              onClick={this.handleChange}
+              placeholder="Label Here.."
+            />
+            <br />
+            <br />
+            <input
+              className="btn btn-primary"
+              type="submit"
+              value="Set Label"
+            />
+          </form>
           <canvas id="can" />
-          <input type="text" />
         </div>
-        {/* <canvas id="can" /> */}
       </div>
     );
   }
