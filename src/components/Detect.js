@@ -4,7 +4,6 @@ import NavBar from "./NavBar";
 class Detect extends React.Component {
   state = {
     index: 0,
-    status: 0,
     label: "",
     name: "",
     data: [],
@@ -37,8 +36,10 @@ class Detect extends React.Component {
 
   handleLabelSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+    // Get the label element.
     var el = document.getElementById("textDiv");
+
+    // Update the label values and positions.
     el.innerHTML = this.state.label;
     el.style.display = "block";
     el.style.position = "absolute";
@@ -48,6 +49,7 @@ class Detect extends React.Component {
   };
 
   handleChange = e => {
+    // Updating State Varibles.
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -58,6 +60,8 @@ class Detect extends React.Component {
 
     const name = this.state.name;
     var index;
+
+    // Get the index of the entered person using the name.
     for (let t = 0; t < this.state.faces.length; t++) {
       if (name === this.state.faces[t]) {
         index = t;
@@ -72,6 +76,8 @@ class Detect extends React.Component {
     inp.style.display = "block";
     inp.style.position = "absolute";
 
+    // Put a rectangle at the co ordinates.
+
     inp.style.right = this.state.coOrds[index].x + 100 + "px";
     inp.style.top = this.state.coOrds[index].y + 800 + "px";
     this.setState({ index });
@@ -81,29 +87,32 @@ class Detect extends React.Component {
       this.state.coOrds[index].w,
       this.state.coOrds[index].h
     );
+
+    // Automatically takes to that persons area.
     window.scrollBy(0, this.state.coOrds[index].y + 450);
 
     ctx.strokeStyle = "white";
     ctx.stroke();
 
-    this.setState({ name: "", status: 1 });
+    this.setState({ name: "" });
   };
 
   componentDidMount() {
+    //
     var inp = document.getElementById("canText");
-
     inp.style.display = "none";
 
     var can = document.getElementById("can");
-
     var ctx = can.getContext("2d");
 
+    // Set canvas width and height
     can.width = 500;
     can.height = 8000;
 
     var imgs = [];
     var imgIndex = 0;
 
+    // Push Images from local directory.
     for (var x = 0; x < 10; x++) {
       for (var y = 0; y < 10; y++) {
         if (imgIndex < 10) {
@@ -127,7 +136,7 @@ class Detect extends React.Component {
         } else break;
       }
     }
-    this.setState({ imgs }, () => console.log(this.state));
+    this.setState({ imgs });
   }
 
   render() {

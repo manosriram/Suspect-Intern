@@ -5,9 +5,8 @@ class Remove extends Component {
     name: ""
   };
 
-  componentDidMount() {}
-
   handleChange = e => {
+    // Updating State Varibles..
     this.setState({
       name: e.target.value
     });
@@ -18,11 +17,12 @@ class Remove extends Component {
     var el = document.getElementById("can");
     var ctx = el.getContext("2d");
 
+    // Get the index of the entered Rectangle
     for (let t = 0; t < this.props.data.rectData.length; t++) {
       if (this.state.name === this.props.data.rectData[t].name) {
         el = this.props.data.rectData[t];
+        // Clear the area of the entered rectangle co-ordinates.
         ctx.clearRect(el.xCo, el.yCo, el.width, el.height);
-
         return;
       }
     }

@@ -27,12 +27,14 @@ class Create extends Component {
   };
 
   componentDidMount() {
+    // Create a Canvas of Width and height of the window.
     var canvas = document.querySelector("canvas");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
 
   handleChange = e => {
+    // Updating state variables
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -40,10 +42,13 @@ class Create extends Component {
 
   handleCreateSubmit = e => {
     e.preventDefault();
+
     var canvas = document.getElementById("can");
     canvas.setAttribute("class", this.state.name);
 
     var ctx = canvas.getContext("2d");
+
+    // Adding properties to the Canvas
     ctx.fillStyle = this.state.color;
     ctx.fillRect(
       Number(this.state.xCo),
@@ -51,6 +56,7 @@ class Create extends Component {
       Number(this.state.width),
       Number(this.state.height)
     );
+    // Wrapping up all the properties into one payload
     const payload = {
       name: this.state.name,
       xCo: this.state.xCo,
@@ -62,6 +68,7 @@ class Create extends Component {
     var newLoad = [];
     newLoad = this.state.rectData;
     newLoad.push(payload);
+    // setting the state of the payload
     this.setState({ rectData: newLoad });
   };
 
@@ -70,6 +77,8 @@ class Create extends Component {
     var x, y, z, g;
     var ele = document.getElementById("can");
     var ctx = ele.getContext("2d");
+
+    // To resize, the index of the rectangle must be found and then their properties must be changed.
 
     for (let t = 0; t < this.state.rectData.length; t++) {
       if (this.state.rectData[t].name === this.state.newName) {
@@ -82,10 +91,13 @@ class Create extends Component {
         newData[t].width = this.state.newWidth;
         newData[t].height = this.state.newHeight;
 
-        this.setState({ rectData: newData }, () =>
-          console.log(this.state.rectData)
-        );
+        // setting the state of resized rectangle.
+        this.setState({ rectData: newData });
+
+        // Remove the old rectangle.
         ctx.clearRect(Number(x), Number(y), Number(z), Number(g));
+
+        // Set the new properties to the rectangle.
         ctx.fillRect(
           Number(x),
           Number(y),
@@ -99,6 +111,7 @@ class Create extends Component {
   render() {
     return (
       <div>
+        {/*navbar component */}
         <NavBar />
 
         <div className="removeCom">
