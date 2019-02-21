@@ -1,6 +1,5 @@
 import React from "react";
 import NavBar from "./NavBar";
-import { timingSafeEqual } from "crypto";
 
 class Detect extends React.Component {
   state = {
@@ -95,7 +94,6 @@ class Detect extends React.Component {
 
     inp.style.display = "none";
 
-    var im = document.getElementById("im");
     var can = document.getElementById("can");
 
     var ctx = can.getContext("2d");
