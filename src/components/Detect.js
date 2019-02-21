@@ -138,7 +138,7 @@ class Detect extends React.Component {
         <NavBar />
         <br />
         <br />
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} autoComplete="off">
           <input
             type="text"
             placeholder="Enter Name"
@@ -160,7 +160,11 @@ class Detect extends React.Component {
         <br />
         <h2>Canvas Area</h2>
         <div>
-          <form id="canText" onSubmit={this.handleLabelSubmit}>
+          <form
+            id="canText"
+            onSubmit={this.handleLabelSubmit}
+            autoComplete="off"
+          >
             <input
               id="label"
               type="text"

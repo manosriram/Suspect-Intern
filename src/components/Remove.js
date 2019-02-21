@@ -32,7 +32,7 @@ class Remove extends Component {
     return (
       <div>
         <h3>Remove Rectangle</h3>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} autoComplete="off">
           <input
             type="text"
             name="name"

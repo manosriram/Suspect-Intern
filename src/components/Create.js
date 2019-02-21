@@ -106,7 +106,7 @@ class Create extends Component {
         </div>
         <div className="create-resize">
           <h3>Create Rectangle</h3>
-          <form onSubmit={this.handleCreateSubmit}>
+          <form onSubmit={this.handleCreateSubmit} autoComplete="off">
             <input
               type="text"
               placeholder="X Co-Ordinate"
@@ -168,7 +168,7 @@ class Create extends Component {
           <br />
           <br />
           <h3>Resize Rectangle</h3>
-          <form onSubmit={this.handleResizeSubmit}>
+          <form onSubmit={this.handleResizeSubmit} autoComplete="off">
             <input
               type="text"
               placeholder="Name of Rectangle"
@@ -206,6 +206,7 @@ class Create extends Component {
         <br />
         <br />
         <br />
+        <hr />
         <h2>Canvas Area</h2>
         <canvas id="can" />
       </div>
