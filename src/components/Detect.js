@@ -1,10 +1,12 @@
 import React from "react";
 import NavBar from "./NavBar";
+import { timingSafeEqual } from "crypto";
 
 class Detect extends React.Component {
   state = {
-    label: "",
+    index: 0,
     status: 0,
+    label: "",
     name: "",
     data: [],
     faces: [
@@ -34,10 +36,16 @@ class Detect extends React.Component {
     imgs: []
   };
 
-  handleLabelSubmit = () => {
-    this.setState({ label: this.refs.label.value }, () =>
-      console.log(this.state)
-    );
+  handleLabelSubmit = e => {
+    e.preventDefault();
+    console.log(this.state);
+    var el = document.getElementById("textDiv");
+    el.innerHTML = this.state.label;
+    el.style.display = "block";
+    el.style.position = "absolute";
+
+    el.style.right = this.state.coOrds[this.state.index].x + 200 + "px";
+    el.style.top = this.state.coOrds[this.state.index].y + 1200 + "px";
   };
 
   handleChange = e => {
@@ -61,13 +69,13 @@ class Detect extends React.Component {
     var can = document.getElementById("can");
     var ctx = can.getContext("2d");
     var inp = document.getElementById("canText");
+
     inp.style.display = "block";
     inp.style.position = "absolute";
 
     inp.style.right = this.state.coOrds[index].x + 100 + "px";
     inp.style.top = this.state.coOrds[index].y + 800 + "px";
-    inp.id = "label";
-
+    this.setState({ index });
     ctx.rect(
       this.state.coOrds[index].x,
       this.state.coOrds[index].y,
@@ -92,7 +100,7 @@ class Detect extends React.Component {
 
     var ctx = can.getContext("2d");
 
-    can.width = 1000;
+    can.width = 500;
     can.height = 8000;
 
     var imgs = [];
@@ -137,6 +145,7 @@ class Detect extends React.Component {
             name="name"
             value={this.state.name}
             onChange={this.handleChange}
+            ref="label"
           />
           <br />
           <br />
@@ -151,13 +160,13 @@ class Detect extends React.Component {
         <br />
         <h2>Canvas Area</h2>
         <div>
-          <form id="canText">
+          <form id="canText" onSubmit={this.handleLabelSubmit}>
             <input
               id="label"
               type="text"
-              name="label"
               value={this.state.label}
-              onClick={this.handleChange}
+              name="label"
+              onChange={this.handleChange}
               placeholder="Label Here.."
             />
             <br />
@@ -168,6 +177,7 @@ class Detect extends React.Component {
               value="Set Label"
             />
           </form>
+          <h2 id="textDiv" />
           <canvas id="can" />
         </div>
       </div>

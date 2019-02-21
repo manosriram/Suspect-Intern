@@ -31,7 +31,10 @@ input::placeholder {
   text-align: center;
   color: white;
 }
-
-#label {
-  z-index: 1;
+#textDiv {
+  color: white;
+}
+#canText {
+  opacity: 0.8;
+  background: none;
 }
