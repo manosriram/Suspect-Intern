@@ -44,8 +44,8 @@ class Detect extends React.Component {
     el.style.display = "block";
     el.style.position = "absolute";
 
-    el.style.right = this.state.coOrds[this.state.index].x + 200 + "px";
-    el.style.top = this.state.coOrds[this.state.index].y + 1200 + "px";
+    el.style.right = this.state.coOrds[this.state.index].x + 400 + "px";
+    el.style.top = this.state.coOrds[this.state.index].y + 700 + "px";
   };
 
   handleChange = e => {
